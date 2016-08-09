@@ -61,7 +61,7 @@ namespace Card_o_Tron
 
                 Server = Client.Servers.First(s => s.Id == ServerID);
 
-                Console.WriteLine("Loaded Card-o-Tron bot to server " + Server.Name);
+                LogText("Loaded Card-o-Tron bot to server " + Server.Name);
             });
         }
 
@@ -73,22 +73,22 @@ namespace Card_o_Tron
             {
                 string[] admins = File.ReadAllText(AppDirectory + "admins.list").Split(new string[1] { ";" }, StringSplitOptions.RemoveEmptyEntries);
 
-                Console.WriteLine("Loading admins (" + admins.Length + ") :");
+                LogText("Loading admins (" + admins.Length + ") :");
 
                 foreach (string admin in admins)
                 {
                     Admins.Add(admin);
-                    Console.WriteLine("· " + admin);
+                    LogText("- " + admin);
                 }
             }
             else
             {
                 File.Create(AppDirectory + "admins.list").Close();
 
-                Console.WriteLine("Created empty admin list");
+                LogText("Created empty admin list");
             }
 
-            Console.WriteLine(" ");
+            LogText(" ");
         }
 
         private void ProcessMessage(MessageEventArgs args)
@@ -418,18 +418,19 @@ namespace Card_o_Tron
 
         #region Log Methods
 
+        public void LogText(string text)
+        {
+            Console.WriteLine("<white>" + text + "</white>");
+        }
+
         public void LogNormalCommand(Channel channel, string cmd, string user)
         {
-            Console.ForegroundColor = ConsoleColor.Cyan;
-            Console.WriteLine(cmd + " requested in #" + channel.Name + " by " + user);
-            Console.ForegroundColor = ConsoleColor.White;
+            Console.WriteLine("<cyan>" + cmd + " requested in #" + channel.Name + " by " + user + "</cyan>");
         }
 
         public void LogAdminCommand(Channel channel, string cmd, string user)
         {
-            Console.ForegroundColor = ConsoleColor.Green;
-            Console.WriteLine(cmd + " requested in #" + channel.Name + " by " + user);
-            Console.ForegroundColor = ConsoleColor.White;
+            Console.WriteLine("<green>" + cmd + " requested in #" + channel.Name + " by " + user + "</green>");
         }
 
         #endregion
