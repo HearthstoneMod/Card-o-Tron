@@ -1,9 +1,10 @@
 ﻿using System;
 using System.IO;
+using System.Net;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Collections.Generic;
-using System.Net;
+using System.Net.NetworkInformation;
 using Newtonsoft.Json;
 using Discord;
 
@@ -117,10 +118,16 @@ namespace Card_o_Tron
                                 }
                                 break;
 
+                            case "!ping":
+                                LogNormalCommand(channel, commands[0], fullUser);
+                                channel.SendMessage("`Latency : " + new Ping().Send("www.discordapp.com").RoundtripTime + " ms`");
+                                break;
+
                             case "!help":
                                 LogNormalCommand(channel, commands[0], fullUser);
                                 channel.SendMessage("**· Normal Commands :**\n " +
                                                     "```!hello - HELLO! (admin only)\n" +
+                                                    "!ping - Check bot status\n" +
                                                     "!help - Shows this message```\n" +
 
                                                     "**· Admin Commands: **\n" +
