@@ -125,7 +125,7 @@ namespace Card_o_Tron
                                 {
                                     channel.SendMessage("Use `!help card` to get the full list of Card-o-Tron commands");
                                 }
-                                else if (commands[1] == "card")
+                                else if (commands[1].ToLower() == "card")
                                 {
                                     LogNormalCommand(channel, commands[0], fullUser);
                                     channel.SendMessage("**· Normal Commands :**\n " +
