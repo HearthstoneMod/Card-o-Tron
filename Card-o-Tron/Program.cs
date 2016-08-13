@@ -68,8 +68,6 @@ namespace Card_o_Tron
 
         private void LoadFiles()
         {
-            // Admin files
-
             if (File.Exists(AppDirectory + "admins.list"))
             {
                 string[] admins = File.ReadAllText(AppDirectory + "admins.list").Split(new string[1] { ";" }, StringSplitOptions.RemoveEmptyEntries);
@@ -124,24 +122,31 @@ namespace Card_o_Tron
                                 break;
 
                             case "!help":
-                                LogNormalCommand(channel, commands[0], fullUser);
-                                channel.SendMessage("**· Normal Commands :**\n " +
-                                                    "```!hello - HELLO! (admin only)\n" +
-                                                    "!ping - Check bot status\n" +
-                                                    "!help - Shows this message```\n" +
+                                if (commands.Length == 1)
+                                {
+                                    channel.SendMessage("Use `!help card` to get the full list of Card-o-Tron commands");
+                                }
+                                else if (commands[1] == "card")
+                                {
+                                    LogNormalCommand(channel, commands[0], fullUser);
+                                    channel.SendMessage("**· Normal Commands :**\n " +
+                                                        "```!hello - HELLO! (admin only)\n" +
+                                                        "!ping - Checks bot status\n" +
+                                                        "!help - Shows this message```\n" +
 
-                                                    "**· Admin Commands: **\n" +
-                                                    "```!addadmin <fullname> - Adds an admin to the admin list (admin only)\n" +
-                                                    "!removeadmin <fullname> -Removes an admin from the admin list (admin only)\n" +
-                                                    "!adminlist - Show the full list of admins```\n" +
+                                                        "**· Admin Commands: **\n" +
+                                                        "```!addadmin <fullname> - Adds an admin to the admin list (admin only)\n" +
+                                                        "!removeadmin <fullname> - Removes an admin from the admin list (admin only)\n" +
+                                                        "!adminlist - Shows the full list of admins```\n" +
 
-                                                    "**· Card Commands: **\n" +
-                                                    "```!card <fullname> - Sends the card as an image\n" +
-                                                    "!cardgif <fullname> - Sends the card as a gif```\n" +
+                                                        "**· Card Commands: **\n" +
+                                                        "```!card <fullname> - Sends the card as an image\n" +
+                                                        "!cardgif <fullname> - Sends the card as a gif```\n" +
 
-                                                    "**· Hero Commands: **\n" +
-                                                    "```!hero <fullname> - Sends the hero as an image\n" +
-                                                    "!herogif <fullname> - Sends the hero as a gif```\n");
+                                                        "**· Hero Commands: **\n" +
+                                                        "```!hero <fullname> - Sends the hero as an image\n" +
+                                                        "!herogif <fullname> - Sends the hero as a gif```\n");
+                                }
                                 break;
                             case "!addadmin":
                                 if (commands.Length > 1 && isAdmin)
