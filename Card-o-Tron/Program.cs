@@ -72,13 +72,12 @@ namespace Card_o_Tron
             {
                 string[] admins = File.ReadAllText(AppDirectory + "admins.list").Split(new string[1] { ";" }, StringSplitOptions.RemoveEmptyEntries);
 
-                LogText("Loading admins (" + admins.Length + ") :");
-
                 foreach (string admin in admins)
                 {
                     Admins.Add(admin);
-                    LogText("- " + admin);
                 }
+
+                LogText("Loaded " + admins.Length + " admins");
             }
             else
             {
