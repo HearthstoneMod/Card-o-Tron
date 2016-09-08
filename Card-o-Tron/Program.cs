@@ -54,7 +54,7 @@ namespace Card_o_Tron
 
             Client.ExecuteAndWait(async () =>
             {
-                await Client.Connect("MjEyMjg0MDA2NDg0NTQxNDQw.CopoxA.Yna0J5n7tb22-sBYUqA7UAdCMhI");
+                await Client.Connect("Bot MjEyMjg0MDA2NDg0NTQxNDQw.CopoxA.Yna0J5n7tb22-sBYUqA7UAdCMhI");
 
                 await Task.Delay(1000);
 
