@@ -101,8 +101,11 @@ namespace Card_o_Tron
                                 break;
 
                             case "!ping":
-                                LogNormalCommand(channel, commands[0], fullUser);
-                                channel.SendMessage("`Latency : " + new Ping().Send("www.discordapp.com").RoundtripTime + " ms`");
+                                if (isModerator)
+                                {
+                                    LogNormalCommand(channel, commands[0], fullUser);
+                                    channel.SendMessage("`Latency : " + new Ping().Send("www.discordapp.com").RoundtripTime + " ms`");
+                                }
                                 break;
 
                             case "!help":
@@ -114,8 +117,8 @@ namespace Card_o_Tron
                                 {
                                     LogNormalCommand(channel, commands[0], fullUser);
                                     channel.SendMessage("**· Normal Commands :**\n " +
-                                                        "```!hello - HELLO! (admin only)\n" +
-                                                        "!ping - Checks bot status\n" +
+                                                        "```!hello - HELLO! (admin+ only)\n" +
+                                                        "!ping - Checks bot status (mod+ only)\n" +
                                                         "!help - Shows this message```\n" +
 
                                                         "**· Card Commands: **\n" +
